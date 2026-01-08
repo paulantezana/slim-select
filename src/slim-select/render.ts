@@ -9,6 +9,7 @@ export interface Callbacks {
   addable?: (
     value: string
   ) => Promise<Partial<Option> | string> | Partial<Option> | string | false | undefined | null | Error
+  addButton?: () => void
   setSelected: (value: string | string[], runAfterChange: boolean) => void
   addOption: (option: Option) => void
   search: (search: string) => void
@@ -34,6 +35,14 @@ export interface Content {
   main: HTMLDivElement
   search: Search
   list: HTMLDivElement
+  addButton?: AddButton
+}
+
+export interface AddButton {
+  main: HTMLDivElement
+  svg: SVGSVGElement
+  path: SVGPathElement
+  text?: HTMLSpanElement
 }
 
 export interface Search {
@@ -719,10 +728,56 @@ export default class Render {
     const list = this.listDiv()
     main.appendChild(list)
 
+    // Add add-button
+    let contentAdd: AddButton | undefined = undefined
+    if (this.callbacks.addButton) {
+      contentAdd = this.addButtonDiv()
+      main.appendChild(contentAdd.main)
+    }
+
     return {
       main: main,
       search: search,
-      list: list
+      list: list,
+      addButton: contentAdd
+    }
+  }
+
+  // Create content add button element
+  public addButtonDiv(): AddButton {
+    const main = document.createElement('div')
+    this.addClasses(main, this.classes.addButton)
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svg.setAttribute('viewBox', '0 0 100 100')
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+    path.setAttribute('d', this.classes.addButtonPath)
+    svg.appendChild(path)
+    main.appendChild(svg)
+
+    let textEl: HTMLSpanElement | undefined
+    if (this.settings.addButtonText && this.settings.addButtonText !== '') {
+      textEl = document.createElement('span')
+      textEl.textContent = this.settings.addButtonText
+      textEl.className = 'ss-add-button-text'
+      main.appendChild(textEl)
+    }
+
+    main.onclick = (e: Event) => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (this.callbacks.addButton) {
+        this.callbacks.addButton()
+        // Close the dropdown after executing the callback
+        this.callbacks.close()
+      }
+    }
+
+    return {
+      main,
+      svg,
+      path,
+      text: textEl
     }
   }
 

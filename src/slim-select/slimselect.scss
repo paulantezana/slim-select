@@ -566,4 +566,26 @@
       padding: var(--ss-spacing-m) var(--ss-spacing-l) var(--ss-spacing-m) var(--ss-spacing-l);
     }
   }
+
+  .ss-add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ss-spacing-m);
+    flex: 0 0 auto;
+    padding: var(--ss-spacing-m);
+    border-top: 1px solid var(--ss-border-color);
+    cursor: pointer;
+    background: var(--ss-bg-color);
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .ss-add-button-text {
+      font-size: 0.95em;
+      color: var(--ss-font-color);
+    }
+  }
 }

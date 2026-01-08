@@ -123,7 +123,8 @@ export default defineComponent({
             { text: 'open', value: 'events#open' },
             { text: 'search', value: 'events#search' },
             { text: 'searchFilter', value: 'events#searchFilter' },
-            { text: 'addable', value: 'events#addable' }
+            { text: 'addable', value: 'events#addable' },
+            { text: 'addButton', value: 'events#addButton' }
           ]
         },
 

@@ -28,6 +28,7 @@ export interface Events {
   addable?: (
     value: string
   ) => Promise<Partial<Option> | string> | Partial<Option> | string | false | null | undefined | Error
+  addButton?: () => void
   beforeChange?: (newVal: Option[], oldVal: Option[]) => boolean | void
   afterChange?: (newVal: Option[]) => void
   beforeOpen?: () => void
@@ -58,6 +59,7 @@ export default class SlimSelect {
       return opt.text.toLowerCase().indexOf(search.toLowerCase()) !== -1
     },
     addable: undefined,
+    addButton: undefined,
     beforeChange: undefined,
     afterChange: undefined,
     beforeOpen: undefined,
@@ -173,6 +175,7 @@ export default class SlimSelect {
       open: this.open.bind(this),
       close: this.close.bind(this),
       addable: this.events.addable ? this.events.addable : undefined,
+      addButton: this.events.addButton ? this.events.addButton : undefined,
       setSelected: this.setSelected.bind(this),
       addOption: this.addOption.bind(this),
       search: this.search.bind(this),

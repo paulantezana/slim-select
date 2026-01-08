@@ -33,6 +33,8 @@ export default class CssClasses {
   public searching: string
   public addable: string
   public addablePath: string // Not a class but whatever
+  public addButton: string
+  public addButtonPath: string // Not a class but whatever
 
   // List optgroups/options
   public list: string
@@ -91,6 +93,8 @@ export default class CssClasses {
     this.searching = join('ss-searching', classes.searching)
     this.addable = join('ss-addable', classes.addable)
     this.addablePath = classes.addablePath || 'M50,10 L50,90 M10,50 L90,50'
+    this.addButton = join('ss-add-button', classes.addButton)
+    this.addButtonPath = classes.addButtonPath || 'M50,10 L50,90 M10,50 L90,50'
     this.list = join('ss-list', classes.list)
     this.optgroup = join('ss-optgroup', classes.optgroup)
     this.optgroupLabel = join('ss-optgroup-label', classes.optgroupLabel)

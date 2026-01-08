@@ -10,6 +10,7 @@ import BeforeAfterOpenClose from './before_after_open_close.vue'
 import Search from './search.vue'
 import SearchFilter from './search_filter.vue'
 import Addable from './addable.vue'
+import AddButton from './add_button.vue'
 
 export default defineComponent({
   name: 'Events',
@@ -20,7 +21,8 @@ export default defineComponent({
     BeforeAfterOpenClose,
     Search,
     SearchFilter,
-    Addable
+    Addable,
+    AddButton
   }
 })
 </script>
@@ -37,5 +39,6 @@ export default defineComponent({
 
     <SearchFilter />
     <Addable />
+    <AddButton />
   </div>
 </template>
