@@ -32,6 +32,9 @@ class L {
   addable;
   addablePath;
   // Not a class but whatever
+  addButton;
+  addButtonPath;
+  // Not a class but whatever
   // List optgroups/options
   list;
   // Optgroup
@@ -61,7 +64,7 @@ class L {
   constructor(e) {
     e || (e = {});
     let t = (s = "", i = "") => `${s} ${i}`.trim();
-    this.main = t("ss-main", e.main), this.placeholder = t("ss-placeholder", e.placeholder), this.values = t("ss-values", e.values), this.single = t("ss-single", e.single), this.max = t("ss-max", e.max), this.value = t("ss-value", e.value), this.valueText = t("ss-value-text", e.valueText), this.valueDelete = t("ss-value-delete", e.valueDelete), this.valueOut = t("ss-value-out", e.valueOut), this.deselect = t("ss-deselect", e.deselect), this.deselectPath = e.deselectPath || "M10,10 L90,90 M10,90 L90,10", this.arrow = t("ss-arrow", e.arrow), this.arrowClose = e.arrowClose || "M10,30 L50,70 L90,30", this.arrowOpen = e.arrowOpen || "M10,70 L50,30 L90,70", this.content = t("ss-content", e.content), this.contentOpen = t("ss-open", e.contentOpen), this.dirAbove = t("ss-dir-above", e.dirAbove), this.dirBelow = t("ss-dir-below", e.dirBelow), this.search = t("ss-search", e.search), this.searchHighlighter = t("ss-search-highlight", e.searchHighlighter), this.searching = t("ss-searching", e.searching), this.addable = t("ss-addable", e.addable), this.addablePath = e.addablePath || "M50,10 L50,90 M10,50 L90,50", this.list = t("ss-list", e.list), this.optgroup = t("ss-optgroup", e.optgroup), this.optgroupLabel = t("ss-optgroup-label", e.optgroupLabel), this.optgroupLabelText = t("ss-optgroup-label-text", e.optgroupLabelText), this.optgroupActions = t("ss-optgroup-actions", e.optgroupActions), this.optgroupSelectAll = t("ss-selectall", e.optgroupSelectAll), this.optgroupSelectAllBox = e.optgroupSelectAllBox || "M60,10 L10,10 L10,90 L90,90 L90,50", this.optgroupSelectAllCheck = e.optgroupSelectAllCheck || "M30,45 L50,70 L90,10", this.optgroupClosable = t("ss-closable", e.optgroupClosable), this.option = t("ss-option", e.option), this.optionDelete = e.optionDelete || "M10,10 L90,90 M10,90 L90,10", this.highlighted = t("ss-highlighted", e.highlighted), this.mainOpen = t("ss-open", e.mainOpen), this.close = t("ss-close", e.close), this.selected = t("ss-selected", e.selected), this.error = t("ss-error", e.error), this.disabled = t("ss-disabled", e.disabled), this.hide = t("ss-hide", e.hide);
+    this.main = t("ss-main", e.main), this.placeholder = t("ss-placeholder", e.placeholder), this.values = t("ss-values", e.values), this.single = t("ss-single", e.single), this.max = t("ss-max", e.max), this.value = t("ss-value", e.value), this.valueText = t("ss-value-text", e.valueText), this.valueDelete = t("ss-value-delete", e.valueDelete), this.valueOut = t("ss-value-out", e.valueOut), this.deselect = t("ss-deselect", e.deselect), this.deselectPath = e.deselectPath || "M10,10 L90,90 M10,90 L90,10", this.arrow = t("ss-arrow", e.arrow), this.arrowClose = e.arrowClose || "M10,30 L50,70 L90,30", this.arrowOpen = e.arrowOpen || "M10,70 L50,30 L90,70", this.content = t("ss-content", e.content), this.contentOpen = t("ss-open", e.contentOpen), this.dirAbove = t("ss-dir-above", e.dirAbove), this.dirBelow = t("ss-dir-below", e.dirBelow), this.search = t("ss-search", e.search), this.searchHighlighter = t("ss-search-highlight", e.searchHighlighter), this.searching = t("ss-searching", e.searching), this.addable = t("ss-addable", e.addable), this.addablePath = e.addablePath || "M50,10 L50,90 M10,50 L90,50", this.addButton = t("ss-add-button", e.addButton), this.addButtonPath = e.addButtonPath || "M50,10 L50,90 M10,50 L90,50", this.list = t("ss-list", e.list), this.optgroup = t("ss-optgroup", e.optgroup), this.optgroupLabel = t("ss-optgroup-label", e.optgroupLabel), this.optgroupLabelText = t("ss-optgroup-label-text", e.optgroupLabelText), this.optgroupActions = t("ss-optgroup-actions", e.optgroupActions), this.optgroupSelectAll = t("ss-selectall", e.optgroupSelectAll), this.optgroupSelectAllBox = e.optgroupSelectAllBox || "M60,10 L10,10 L10,90 L90,90 L90,50", this.optgroupSelectAllCheck = e.optgroupSelectAllCheck || "M30,45 L50,70 L90,10", this.optgroupClosable = t("ss-closable", e.optgroupClosable), this.option = t("ss-option", e.option), this.optionDelete = e.optionDelete || "M10,10 L90,90 M10,90 L90,10", this.highlighted = t("ss-highlighted", e.highlighted), this.mainOpen = t("ss-open", e.mainOpen), this.close = t("ss-close", e.close), this.selected = t("ss-selected", e.selected), this.error = t("ss-error", e.error), this.disabled = t("ss-disabled", e.disabled), this.hide = t("ss-hide", e.hide);
   }
   getFirst(e) {
     return this[e].split(" ")[0];
@@ -70,7 +73,7 @@ class L {
 function y() {
   return Math.random().toString(36).substring(2, 10);
 }
-function A(p, e) {
+function x(p, e) {
   function t(i, l) {
     return l && i && i.classList && i.classList.contains(l) || l && i && i.dataset && i.dataset.id && i.dataset.id === e ? i : null;
   }
@@ -546,10 +549,31 @@ class N {
     const t = this.searchDiv();
     e.appendChild(t.main);
     const s = this.listDiv();
-    return e.appendChild(s), {
+    e.appendChild(s);
+    let i;
+    return this.callbacks.addButton && (i = this.addButtonDiv(), e.appendChild(i.main)), {
       main: e,
       search: t,
-      list: s
+      list: s,
+      addButton: i
+    };
+  }
+  // Create content add button element
+  addButtonDiv() {
+    const e = document.createElement("div");
+    this.addClasses(e, this.classes.addButton);
+    const t = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    t.setAttribute("viewBox", "0 0 100 100");
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    s.setAttribute("d", this.classes.addButtonPath), t.appendChild(s), e.appendChild(t);
+    let i;
+    return this.settings.addButtonText && this.settings.addButtonText !== "" && (i = document.createElement("span"), i.textContent = this.settings.addButtonText, i.className = "ss-add-button-text", e.appendChild(i)), e.onclick = (l) => {
+      l.preventDefault(), l.stopPropagation(), this.callbacks.addButton && (this.callbacks.addButton(), this.callbacks.close());
+    }, {
+      main: e,
+      svg: t,
+      path: s,
+      text: i
     };
   }
   moveContent() {
@@ -813,7 +837,7 @@ class N {
         if (s.shiftKey && this.lastSelectedOption) {
           const d = this.store.getDataOptions(), m = d.findIndex((C) => C.id === this.lastSelectedOption.id), v = d.findIndex((C) => C.id === e.id);
           if (m >= 0 && v >= 0) {
-            const C = Math.min(m, v), w = Math.max(m, v), E = d.slice(C, w + 1).filter((x) => !h.find((T) => T.id === x.id));
+            const C = Math.min(m, v), w = Math.max(m, v), E = d.slice(C, w + 1).filter((A) => !h.find((T) => T.id === A.id));
             h.length + E.length <= this.settings.maxSelected ? r = h.concat(E) : r = h;
           } else
             r = h;
@@ -1132,7 +1156,7 @@ class P {
       if (l.__slimSelectLabelHandler)
         return;
       const n = (a) => {
-        const o = a.target, h = A(o, this.select.dataset.id);
+        const o = a.target, h = x(o, this.select.dataset.id);
         a.preventDefault(), !h && this.onLabelClick && this.onLabelClick();
       };
       l.__slimSelectLabelHandler = n, l.addEventListener("click", n, { capture: !0, passive: !1 });
@@ -1197,11 +1221,12 @@ class M {
   maxValuesShown;
   maxValuesMessage;
   addableText;
+  addButtonText;
   constructor(e) {
-    e || (e = {}), this.id = "ss-" + y(), this.style = e.style || "", this.class = e.class || [], this.disabled = e.disabled !== void 0 ? e.disabled : !1, this.alwaysOpen = e.alwaysOpen !== void 0 ? e.alwaysOpen : !1, this.showSearch = e.showSearch !== void 0 ? e.showSearch : !0, this.focusSearch = e.focusSearch !== void 0 ? e.focusSearch : !0, this.keepSearch = e.keepSearch !== void 0 ? e.keepSearch : !1, this.ariaLabel = e.ariaLabel || "Combobox", this.searchPlaceholder = e.searchPlaceholder || "Search...", this.searchText = e.searchText || "No Results", this.searchingText = e.searchingText || "Searching...", this.searchHighlight = e.searchHighlight !== void 0 ? e.searchHighlight : !1, this.closeOnSelect = e.closeOnSelect !== void 0 ? e.closeOnSelect : !0, this.contentLocation = e.contentLocation || document.body, this.contentPosition = e.contentPosition || "absolute", this.openPosition = e.openPosition || "auto", this.placeholderText = e.placeholderText !== void 0 ? e.placeholderText : "Select Value", this.allowDeselect = e.allowDeselect !== void 0 ? e.allowDeselect : !1, this.hideSelected = e.hideSelected !== void 0 ? e.hideSelected : !1, this.keepOrder = e.keepOrder !== void 0 ? e.keepOrder : !1, this.showOptionTooltips = e.showOptionTooltips !== void 0 ? e.showOptionTooltips : !1, this.minSelected = e.minSelected || 0, this.maxSelected = e.maxSelected || 1e3, this.timeoutDelay = e.timeoutDelay || 200, this.maxValuesShown = e.maxValuesShown || 20, this.maxValuesMessage = e.maxValuesMessage || "{number} selected", this.addableText = e.addableText || 'Press "Enter" to add {value}';
+    e || (e = {}), this.id = "ss-" + y(), this.style = e.style || "", this.class = e.class || [], this.disabled = e.disabled !== void 0 ? e.disabled : !1, this.alwaysOpen = e.alwaysOpen !== void 0 ? e.alwaysOpen : !1, this.showSearch = e.showSearch !== void 0 ? e.showSearch : !0, this.focusSearch = e.focusSearch !== void 0 ? e.focusSearch : !0, this.keepSearch = e.keepSearch !== void 0 ? e.keepSearch : !1, this.ariaLabel = e.ariaLabel || "Combobox", this.searchPlaceholder = e.searchPlaceholder || "Search...", this.searchText = e.searchText || "No Results", this.searchingText = e.searchingText || "Searching...", this.searchHighlight = e.searchHighlight !== void 0 ? e.searchHighlight : !1, this.closeOnSelect = e.closeOnSelect !== void 0 ? e.closeOnSelect : !0, this.contentLocation = e.contentLocation || document.body, this.contentPosition = e.contentPosition || "absolute", this.openPosition = e.openPosition || "auto", this.placeholderText = e.placeholderText !== void 0 ? e.placeholderText : "Select Value", this.allowDeselect = e.allowDeselect !== void 0 ? e.allowDeselect : !1, this.hideSelected = e.hideSelected !== void 0 ? e.hideSelected : !1, this.keepOrder = e.keepOrder !== void 0 ? e.keepOrder : !1, this.showOptionTooltips = e.showOptionTooltips !== void 0 ? e.showOptionTooltips : !1, this.minSelected = e.minSelected || 0, this.maxSelected = e.maxSelected || 1e3, this.timeoutDelay = e.timeoutDelay || 200, this.maxValuesShown = e.maxValuesShown || 20, this.maxValuesMessage = e.maxValuesMessage || "{number} selected", this.addableText = e.addableText || 'Press "Enter" to add {value}', this.addButtonText = e.addButtonText || "";
   }
 }
-class F {
+class B {
   selectEl;
   // Classes
   settings;
@@ -1217,6 +1242,7 @@ class F {
     search: void 0,
     searchFilter: (e, t) => e.text.toLowerCase().indexOf(t.toLowerCase()) !== -1,
     addable: void 0,
+    addButton: void 0,
     beforeChange: void 0,
     afterChange: void 0,
     beforeOpen: void 0,
@@ -1254,6 +1280,7 @@ class F {
       open: this.open.bind(this),
       close: this.close.bind(this),
       addable: this.events.addable ? this.events.addable : void 0,
+      addButton: this.events.addButton ? this.events.addButton : void 0,
       setSelected: this.setSelected.bind(this),
       addOption: this.addOption.bind(this),
       search: this.search.bind(this),
@@ -1356,7 +1383,7 @@ class F {
   });
   // Event listener for document click
   documentClick = (e) => {
-    this.settings.isOpen && e.target && !A(e.target, this.settings.id) && this.close(e.type);
+    this.settings.isOpen && e.target && !x(e.target, this.settings.id) && this.close(e.type);
   };
   // Event Listener for window visibility change
   windowVisibilityChange = () => {
@@ -1367,6 +1394,6 @@ export {
   g as Optgroup,
   u as Option,
   M as Settings,
-  F as default
+  B as default
 };
 //# sourceMappingURL=slimselect.es.js.map

@@ -1,7 +1,15 @@
+declare interface AddButton {
+    main: HTMLDivElement;
+    svg: SVGSVGElement;
+    path: SVGPathElement;
+    text?: HTMLSpanElement;
+}
+
 declare interface Callbacks {
     open: () => void;
     close: () => void;
     addable?: (value: string) => Promise<Partial<Option_2> | string> | Partial<Option_2> | string | false | undefined | null | Error;
+    addButton?: () => void;
     setSelected: (value: string | string[], runAfterChange: boolean) => void;
     addOption: (option: Option_2) => void;
     search: (search: string) => void;
@@ -21,6 +29,7 @@ export declare interface Content {
     main: HTMLDivElement;
     search: Search;
     list: HTMLDivElement;
+    addButton?: AddButton;
 }
 
 declare class CssClasses {
@@ -47,6 +56,8 @@ declare class CssClasses {
     searching: string;
     addable: string;
     addablePath: string;
+    addButton: string;
+    addButtonPath: string;
     list: string;
     optgroup: string;
     optgroupLabel: string;
@@ -73,6 +84,7 @@ export declare interface Events {
     search?: (searchValue: string, currentData: (Option_2 | Optgroup)[]) => Promise<(Partial<Option_2> | Partial<Optgroup>)[]> | (Partial<Option_2> | Partial<Optgroup>)[];
     searchFilter?: (option: Option_2, search: string) => boolean;
     addable?: (value: string) => Promise<Partial<Option_2> | string> | Partial<Option_2> | string | false | null | undefined | Error;
+    addButton?: () => void;
     beforeChange?: (newVal: Option_2[], oldVal: Option_2[]) => boolean | void;
     afterChange?: (newVal: Option_2[]) => void;
     beforeOpen?: () => void;
@@ -153,6 +165,7 @@ declare class Render {
     private renderMultipleValues;
     multipleValue(option: Option_2): HTMLDivElement;
     contentDiv(): Content;
+    addButtonDiv(): AddButton;
     moveContent(): void;
     searchDiv(): Search;
     searchFocus(): void;
@@ -255,6 +268,7 @@ export declare class Settings {
     maxValuesShown: number;
     maxValuesMessage: string;
     addableText: string;
+    addButtonText: string;
     constructor(settings?: Partial<Settings>);
 }
 
