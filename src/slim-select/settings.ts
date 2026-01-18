@@ -54,15 +54,15 @@ export default class Settings {
     this.focusSearch = settings.focusSearch !== undefined ? settings.focusSearch : true
     this.keepSearch = settings.keepSearch !== undefined ? settings.keepSearch : false
     this.ariaLabel = settings.ariaLabel || 'Combobox'
-    this.searchPlaceholder = settings.searchPlaceholder || 'Search...'
-    this.searchText = settings.searchText || 'No Results'
-    this.searchingText = settings.searchingText || 'Searching...'
+    this.searchPlaceholder = settings.searchPlaceholder || 'Buscar...'
+    this.searchText = settings.searchText || 'Sin resultados'
+    this.searchingText = settings.searchingText || 'Buscando...'
     this.searchHighlight = settings.searchHighlight !== undefined ? settings.searchHighlight : false
     this.closeOnSelect = settings.closeOnSelect !== undefined ? settings.closeOnSelect : true
     this.contentLocation = settings.contentLocation || document.body
     this.contentPosition = settings.contentPosition || 'absolute'
     this.openPosition = settings.openPosition || 'auto' // options: auto, up, down
-    this.placeholderText = settings.placeholderText !== undefined ? settings.placeholderText : 'Select Value'
+    this.placeholderText = settings.placeholderText !== undefined ? settings.placeholderText : 'Seleccionar valor'
     this.allowDeselect = settings.allowDeselect !== undefined ? settings.allowDeselect : false
     this.hideSelected = settings.hideSelected !== undefined ? settings.hideSelected : false
     this.keepOrder = settings.keepOrder !== undefined ? settings.keepOrder : false
@@ -71,8 +71,8 @@ export default class Settings {
     this.maxSelected = settings.maxSelected || 1000
     this.timeoutDelay = settings.timeoutDelay || 200
     this.maxValuesShown = settings.maxValuesShown || 20
-    this.maxValuesMessage = settings.maxValuesMessage || '{number} selected'
-    this.addableText = settings.addableText || 'Press "Enter" to add {value}'
+    this.maxValuesMessage = settings.maxValuesMessage || '{number} seleccionados'
+    this.addableText = settings.addableText || 'Pulsa "Enter" para añadir {value}'
     this.addButtonText = settings.addButtonText || ''
   }
 }
